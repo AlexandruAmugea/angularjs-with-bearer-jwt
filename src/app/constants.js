@@ -1,5 +1,5 @@
 let BASE_URL = 'https://nodejs-jwt-rest-api.herokuapp.com/api';
-BASE_URL = 'http://localhost:3000/api';
+//BASE_URL = 'http://localhost:3000/api';
 
 const PROPERTIES = {
   signin: `${BASE_URL}/signin`,
