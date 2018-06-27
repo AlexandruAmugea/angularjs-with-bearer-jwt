@@ -1,0 +1,26 @@
+<div layout="row">
+  <div flex-gt-sm="30" flex-offset="35" flex-xs="100" flex-offset-xs="0">
+    <br><br><br><br><br><br><br>
+    <h2>Login</h2>
+    <br>
+    <form name="loginForm" ng-submit="vm.login()">
+    <md-input-container class="md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Username</label>
+      <input ng-model="vm.user.username" type="text"  name="username"
+             minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" required>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Password</label>
+      <input ng-model="vm.user.password" type="password" name="password" minlength="8" maxlength="20" required>
+    </md-input-container>
+    <section layout="row" layout-align="right" layout-wrap>
+      <md-button type="submit" class="md-raised md-primary">Login</md-button>
+      <md-button class="md-raised">Sign up</md-button>
+    </section>
+    </form>
+  </div>
+</div>
+
+
