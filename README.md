@@ -1,3 +1,11 @@
+### Description
+
+Angularjs application with sign in based on jwt authentification. After sign in the jwt will be used as authorization header for
+accessing the rest api. There is an interceptor which will modify the request adding the Authorization Header.
+Technologies user AngularJS, AngularJS Material, SCSS.
+The build system is done with Webpack for development and generating the static content for production.
+For more information see the packages.json regarding the depedencies used.
+
 ### Quick start
 
 # install the dependencies with npm
