@@ -1,6 +1,16 @@
-<div ng-repeat="article in vm.articles">
-  <h2>{{article.title}}</h2>
-  <p>{{article.description}}</p>
-  <p>{{article.text}}</p>
-  <p>Aericle</p>
+<md-content class="md-padding" layout-xs="column" layout="row">
+<div ng-repeat="article in vm.articles"  flex-xs flex-gt-xs="50" layout="column">
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{article.title}}</span>
+        <span class="md-subhead">{{article.description}}</span>
+        <p>{{article.text}}</p>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button ng-click="vm.removeArticle(article)">Delete</md-button>
+    </md-card-actions>
+  </md-card>
 </div>
+</md-content>

@@ -20,7 +20,18 @@ function ArticlePreviewComponent(){
         vm.articles = res;
       }, (error)=> {
         console.log(error);
+      });
+
+    vm.removeArticle = function(article){
+      articleService.removeArticle(article).then(()=>{
+        articleService.getArticles().then((res)=>{
+          vm.articles = res;
+        });
+      }, (error)=> {
+        console.log(error);
       })
+    }
+
     }
 }
 

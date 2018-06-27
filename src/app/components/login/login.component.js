@@ -23,7 +23,6 @@ function Login(){
 
     vm.login = function(){
       loginService.login(vm.user).then(()=>{
-        console.log('redirecting home');
         $state.go('home.home');
       }, (error)=> {
         console.log(error);

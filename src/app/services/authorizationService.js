@@ -2,13 +2,14 @@ import Constants from '../constants';
 
 function AuthorizationService(){
   angular.module('app').service('authService', authService);
-  authService.$inject = ['$q', '$http'];
-  function authService($q, $http){
+  authService.$inject = ['$q', '$http', '$state'];
+  function authService($q, $http, $state){
     const JWT = 'jwt';
 
     return {
       storeJWT: storeJWT,
-      getJWT: getJWT
+      getJWT: getJWT,
+      isAuthorized: isAuthorized,
     };
 
     function storeJWT(token) {
@@ -18,6 +19,17 @@ function AuthorizationService(){
 
     function getJWT() {
       return sessionStorage.getItem(JWT);
+    }
+
+    function isAuthorized(){
+      let deferred = $q.defer();
+      $http.get(Constants.verifyUserToken).then(()=>{
+          deferred.resolve();
+      }, ()=>{
+          $state.go('login');
+          deferred.reject();
+      });
+      return deferred.promise;
     }
   }
 }

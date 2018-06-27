@@ -51,11 +51,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', ($stateProv
           template: require('./views/home.tmpl.html')
         },
       },
-      // resolve: {
-      //   authorize: ['loginService', (loginService) => {
-      //     return loginService.authorize();
-      //   }]
-      // }
+      resolve: {
+        authorize: ['authService', (authService) => {
+          return authService.isAuthorized();
+        }]
+      }
     })
 
     .state('home.home', {
@@ -65,11 +65,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', ($stateProv
           template: require('./views/users.tmpl.html')
         }
       },
-      // resolve: {
-      //   authorize: ['loginService', (loginService) => {
-      //     return loginService.authorize();
-      //   }]
-      // }
+      resolve: {
+        authorize: ['authService', (authService) => {
+          return authService.isAuthorized();
+        }]
+      }
     })
 
     .state('home.articles', {
@@ -79,11 +79,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', ($stateProv
           template: require('./views/articles.tmpl.html')
         }
       },
-      // resolve: {
-      //   authorize: ['loginService', (loginService) => {
-      //     return loginService.authorize();
-      //   }]
-      // }
+      resolve: {
+        authorize: ['authService', (authService) => {
+          authService.isAuthorized().then(()=>{
+            return authService.isAuthorized();
+          })
+        }]
+      }
     })
     .state('login', {
       url: '/login',
@@ -105,9 +107,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', ($stateProv
 }]);
 
 app.run(['$rootScope', 'loginService', '$state', function($rootScope, loginService, $state) {
-  // if(loginService.checkUserStatus()) {
-  //   $state.go('login')
-  // }
+
 }]);
 
 export default APP_NAME;
